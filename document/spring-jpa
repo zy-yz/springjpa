@@ -1,0 +1,8 @@
+Java Persistence API 负责制定协议，Hibernate 负责实现逻辑，Spring Data JPA 负责封装和使用
+乐观锁：实际开发过程中很常用，它没有加锁、没有阻塞，在多线程环境以及高并发的情况下 CPU 的利用率是最高的，吞吐量也是最大的
+JPA中乐观锁的实现方法：JPA 协议规定，想要实现乐观锁可以通过 @Version 注解标注在某个字段上面，并且可以持久化到 DB 即可
+支持的数据类型：
+    1.int&Integer
+    2.short&Short
+    3.long&Long
+    4.java.sql.Timestamp

@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: com-peppers-exam
+  jpa:
+    properties:
+      hibernate:
+        session_factory:
+        #org.hibernate.EmptyInterceptor类的拓展
+        #          interceptor: com.yyc.ycloud.bc.data.authority.jpa.handler.JpaDataAuthorityHandler
+        #org.hibernate.resource.jdbc.spi.StatementInspector的sql拦截
+    #          statement_inspector: com.yyc.ycloud.bc.data.authority.jpa.handler.JpaDataAuthorityHandler
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+  datasource:
+    url: jdbc:mysql://localhost:3306/person-exam?characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: zhaoyu123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+server:
+  port: 11111
+
+#swagger2:
+#  base-package: com.peppers.exam
+#  verison: 1.0
+#  title: 没有标题
+#  description: 没有标题
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+spring.jackson.time-zone: GMT+8
