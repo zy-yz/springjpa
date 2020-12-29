@@ -67,6 +67,32 @@ public class TypesLabelController  {
 
     }
 
+    /**
+     *
+     * DomainClassConverter 类，里面有个 ToEntityConverter 的内部转化类的 Matches 方法，
+     * 它会判断参数的类型是不是实体，并且有没有对应的实体 Repositorie 存在。如果不存在，就会直接报错说找不到合适的参数转化器。
+     *
+     *
+     *
+     *
+     * 从path变量里面获得参数ID的值，然后直接转化成实体
+     * */
+    @ApiOperation("根据ID查询实体")
+    @GetMapping("/label/{id}")
+    public TypesLabelVO getTypesLabelFromPath(@PathVariable("id") TypesLabel typesLabel) {
+        return LabelConverter.toVO(typesLabel);
+    }
+
+    /**
+     * 将request的param中的ID变量值，转化成UserInfo实体
+     * @param typesLabel
+     * @return
+     */
+    @GetMapping("/user")
+    public TypesLabel getTypesLabelFromRequestParam(@RequestParam("id") TypesLabel typesLabel) {
+        return typesLabel;
+    }
+
 
 
 }

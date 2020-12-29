@@ -24,9 +24,9 @@ public interface TypesLabelJpaRepository extends JpaRepository<TypesLabel,Long>,
      * 加悲观锁
      *生产环境中要慎用悲观锁，因为它是阻塞的，一旦发生服务异常，可能会造成死锁的现象
      * */
-    @Override
-    @Lock(LockModeType.PESSIMISTIC_WRITE)
-    Optional<TypesLabel> findById(Long id);
+//    @Override
+//    @Lock(LockModeType.PESSIMISTIC_WRITE)
+//    Optional<TypesLabel> findById(Long id);
 
 
 

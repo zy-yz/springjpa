@@ -2,6 +2,8 @@ package com.peppers.exam.entity.label;
 
 
 import com.peppers.exam.enums.LabelTypeEnum;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 
@@ -9,6 +11,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "types_label")
 @Inheritance(strategy = InheritanceType.JOINED)
+@DynamicInsert /**注解表示 insert 的时候，会动态生产 insert SQL 语句，其生成 SQL 的规则是：只有非空的字段才能生成 SQL*/
+@DynamicUpdate
 public class TypesLabel extends Label {
     @Enumerated(EnumType.ORDINAL)
     @Column(name="type",length = 3)
