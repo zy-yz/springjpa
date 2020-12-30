@@ -6,3 +6,51 @@ JPA中乐观锁的实现方法：JPA 协议规定，想要实现乐观锁可以�
     2.short&Short
     3.long&Long
     4.java.sql.Timestamp
+
+PathVariableMapMethodArgumentResolver 专门解析 @PathVariable 里面的值；
+
+RequestResponseBodyMethodProcessor 专门解析带 @RequestBody 注解的方法参数的值；
+
+RequestParamMethodArgumentResolver 专门解析 @RequestParam 的注解参数的值，当方法的参数中没有任何注解的时候，默认是 @RequestParam；
+
+
+参考WrapWithData这一部分，
+ /* 拦截器配置 */
+
+void addInterceptors(InterceptorRegistry var1);
+
+/* 视图跳转控制器 */
+
+void addViewControllers(ViewControllerRegistry registry);
+
+/**
+
+  *静态资源处理
+
+**/
+
+void addResourceHandlers(ResourceHandlerRegistry registry);
+
+/* 默认静态资源处理器 */
+
+void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer);
+
+/**
+
+  *这里配置视图解析器
+
+ **/
+
+void configureViewResolvers(ViewResolverRegistry registry);
+
+/* 配置内容裁决的一些选项*/
+
+void configureContentNegotiation(ContentNegotiationConfigurer configurer);
+
+/** 解决跨域问题 **/
+
+void addCorsMappings(CorsRegistry registry) ;
+
+/** 添加都会contoller的Return的结果的处理 **/
+
+void addReturnValueHandlers(List<HandlerMethodReturnValueHandler> handlers)；

@@ -1,5 +1,6 @@
 package com.peppers.exam.controller;
 
+import com.peppers.exam.config.webmvcconfig.WarpWithData;
 import com.peppers.exam.entity.label.TypesLabel;
 import com.peppers.exam.service.label.TypesLabelService;
 import com.peppers.exam.utils.page.PageDataRequest;
@@ -88,7 +89,9 @@ public class TypesLabelController  {
      * @param typesLabel
      * @return
      */
+    @ApiOperation("根据ID查询实体,添加自定义注解@WarpWithData，封装在data中")
     @GetMapping("/user")
+    @WarpWithData
     public TypesLabel getTypesLabelFromRequestParam(@RequestParam("id") TypesLabel typesLabel) {
         return typesLabel;
     }

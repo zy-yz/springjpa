@@ -34,7 +34,7 @@ public class Swagger2Config {
     定义展示的信息，例如标题、描述、版本等
      */
     private ApiInfo apiInfo() {
-        return new ApiInfoBuilder().title("度量服务api文档").description("度量服务api文档")
+        return new ApiInfoBuilder().title("api文档").description("api文档")
                 .termsOfServiceUrl("http://127.0.0.1:80808/api").version("1.0").build();
     }
 }
