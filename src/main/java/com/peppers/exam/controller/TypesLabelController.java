@@ -11,6 +11,7 @@ import com.peppers.exam.view.query.TypesLabelQuery;
 import com.peppers.exam.view.vo.label.TypesLabelVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -22,7 +23,7 @@ import java.util.List;
 @RestController
 @Api(tags = "标签服务API")
 @RequestMapping("/label-types")
-public class TypesLabelController  {
+public class TypesLabelController {
 
     @Resource
     private TypesLabelService labelService;

@@ -46,11 +46,25 @@ void configureViewResolvers(ViewResolverRegistry registry);
 /* 配置内容裁决的一些选项*/
 
 void configureContentNegotiation(ContentNegotiationConfigurer configurer);
-
 /** 解决跨域问题 **/
-
 void addCorsMappings(CorsRegistry registry) ;
 
 /** 添加都会contoller的Return的结果的处理 **/
 
 void addReturnValueHandlers(List<HandlerMethodReturnValueHandler> handlers)；
+
+
+数据库连接池：
+通过 getConnection 方法里面的代码可以看到 HikariPool 的用法，也就是说，我们是通过连接池来获得连接的，这个连接用过之后没有断开，
+而是重新放回到连接池里面（这个地方你一定要谨记，它也说明了 connection 是可以共享的）。
+
+**数据源和 driver（驱动）、数据库连接、连接池的关系：
+    数据源的作用是给应用程序提供不同 DB 的连接 connection；
+
+    连接是通过连接池获取的，这主要是出于连接性能的考虑；
+
+    创建好连接之后，通过数据库的驱动来进行数据库操作；
+
+    而不同的 DB（MySQL / h2 / oracle），都有自己的驱动类和相应的驱动 Jar 包。
+
+https://github.com/brettwooldridge/HikariCP hikariCP详细配置
