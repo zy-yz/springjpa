@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * @author peppers
- * @description
+ * @description  继承 BeanUtils，对非空的属性进行复制，空属性的则不管
  * @since 2020/12/29
  **/
 public class SupportBeanUtils extends BeanUtils {

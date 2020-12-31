@@ -10,6 +10,9 @@ spring:
         #org.hibernate.resource.jdbc.spi.StatementInspector的sql拦截
     #          statement_inspector: com.yyc.ycloud.bc.data.authority.jpa.handler.JpaDataAuthorityHandler
     generate-ddl: true
+    #这两行是为了启动阶段不会进行数据库字段的检查，也不会初始化 repositories 相关的实例，而是在第一次用到 repositories 实例的时候再进行初始化
+    repositories:
+      bootstrap-mode: lazy
     hibernate:
       ddl-auto: update
     database-platform: org.hibernate.dialect.MySQL5Dialect
@@ -32,13 +35,20 @@ server:
 
 logging:
   level:
+    com:
+      zaxxer:
+        hikari: DEBUG
     org:
       hibernate:
         SQL: DEBUG
-
-
-  com:
-    zaxxer:
-      hikari:
-        HikariConfig: DEBUG
+        engine:
+          transaction:
+            internal:
+              TransactionImpl: DEBUG
+        resource:
+          jdbc: trace
+      springframework:
+        orm:
+          jpa: DEBUG
+        transaction: TRACE
 spring.jackson.time-zone: GMT+8

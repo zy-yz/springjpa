@@ -68,3 +68,80 @@ void addReturnValueHandlers(List<HandlerMethodReturnValueHandler> handlers)；
     而不同的 DB（MySQL / h2 / oracle），都有自己的驱动类和相应的驱动 Jar 包。
 
 https://github.com/brettwooldridge/HikariCP hikariCP详细配置
+
+
+日志相关有用配置
+### 日志级别的灵活运用
+
+## hibernate相关
+
+# 显示sql的执行日志，如果开了这个,show_sql就可以不用了
+
+logging.level.org.hibernate.SQL=debug
+
+# hibernate id的生成日志
+
+logging.level.org.hibernate.id=debug
+
+# hibernate所有的操作都是PreparedStatement，把sql的执行参数显示出来
+
+logging.level.org.hibernate.type.descriptor.sql.BasicBinder=TRACE
+
+# sql执行完提取的返回值
+
+logging.level.org.hibernate.type.descriptor.sql=trace
+
+# 请求参数
+
+logging.level.org.hibernate.type=debug
+
+# 缓存相关
+
+logging.level.org.hibernate.cache=debug
+
+# 统计hibernate的执行状态
+
+logging.level.org.hibernate.stat=debug
+
+# 查看所有的缓存操作
+
+logging.level.org.hibernate.event.internal=trace
+
+logging.level.org.springframework.cache=trace
+
+# hibernate 的监控指标日志
+
+logging.level.org.hibernate.engine.internal.StatisticalLoggingSessionEventListener=DEBUG
+
+### 连接池的相关日志
+
+## hikari连接池的状态日志，以及连接池是否完好 #连接池的日志效果：HikariCPPool - Pool stats (total=20, active=0, idle=20, waiting=0)
+
+logging.level.com.zaxxer.hikari=TRACE
+
+#开启 debug可以看到 AvailableSettings里面的默认配置的值都有哪些，会输出类似下面的日志格式
+
+# org.hibernate.cfg.Settings               : Statistics: enabled
+
+# org.hibernate.cfg.Settings               : Default batch fetch size: -1
+
+logging.level.org.hibernate.cfg=debug
+
+#hikari数据的配置项日志
+
+logging.level.com.zaxxer.hikari.HikariConfig=TRACE
+
+### 查看事务相关的日志，事务获取，释放日志
+
+logging.level.org.springframework.orm.jpa=DEBUG
+
+logging.level.org.springframework.transaction=TRACE
+
+logging.level.org.hibernate.engine.transaction.internal.TransactionImpl=DEBUG
+
+### 分析connect 以及 orm和 data的处理过程更全的日志
+
+logging.level.org.springframework.data=trace
+
+logging.level.org.springframework.orm=trace
+
