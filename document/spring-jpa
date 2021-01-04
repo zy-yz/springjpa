@@ -225,4 +225,11 @@ First Level Cache（一级缓存）也就是 PersistenceContext
 一级缓存的载体是 Session 或者 EntityManager；而一级缓存的实体也就是数据库里面对应的实体
 一级缓存的最大作用就是管理 Entity 的生命周期
 
+    New（Transient）状态的，不在一级缓存管理之列，这是新创建的；
+
+    Detached 游离状态的，不在一级缓存里面，和 New 的唯一区别是它带有主键和 Version 信息；
+
+    Manager、Removed 状态的实体在一级缓存管理之列，所有对这两种状态的实体进行的更新操作，都不会立即更新到数据库里面，只有执行了 flush 之后才会同步到数据库里面。
+    具体流程图可查看 /document/一级缓存.png
+
 
