@@ -47,8 +47,8 @@ logging:
               TransactionImpl: DEBUG
         resource:
           jdbc: trace
-      springframework:
-        orm:
-          jpa: DEBUG
-        transaction: TRACE
+#      springframework:
+#        orm:
+#          jpa: DEBUG
+#        transaction: TRACE
 spring.jackson.time-zone: GMT+8
