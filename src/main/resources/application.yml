@@ -4,6 +4,7 @@ spring:
   jpa:
     properties:
       hibernate:
+        default_batch_fetch_size: 20 #更改批量取数据的大小为20,解决1+N的问题
         session_factory:
         #org.hibernate.EmptyInterceptor类的拓展
         #          interceptor: com.yyc.ycloud.bc.data.authority.jpa.handler.JpaDataAuthorityHandler

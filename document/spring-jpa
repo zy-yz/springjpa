@@ -186,3 +186,21 @@ Session 和 Transaction 的关系
 事务关闭了，Session 不一定关闭。
 Session 关闭了，事务一定关闭。
 
+
+ Lazy 异常
+ Lazy 异常的常见场景与解决方法
+ 场景一：跨事务，事务之外的场景
+    解决办法
+    第一种方式：简单粗暴地设置为 spring.jpa.open-in-view=true
+    第二种方式：也是简单粗暴改成 Eager 模式(   @OneToMany(fetch = FetchType.EAGER)),但是会带来性能的浪费
+    第三种方式：将可能发生 Lazy 的操作和取数据放在同一个事务里面
+    *（最有效最好）第四种方式：Service 层之外都用 DTO 或者其他 POJO，而不是 Entity
+场景二：异步线程的时候
+场景三：Controller 直接返回实体也会产生 Lazy Exception
+场景四：自定义的拦截器和 filter 中无意的 toString 操作
+
+
+经典的 N+1 SQL 问题
+所谓的 N+1 的 SQL，当我们查询主体信息时候，1 条 SQL 会衍生出来关联关系的 N 条 SQL。
+# 更改批量取数据的大小为20
+spring.jpa.properties.hibernate.default_batch_fetch_size= 20
