@@ -218,3 +218,11 @@ FetchMode.SUBSELECT
 
 @EntityGraph 使用详解 具体实例看entityGraph
 
+
+
+一级缓存
+First Level Cache（一级缓存）也就是 PersistenceContext
+一级缓存的载体是 Session 或者 EntityManager；而一级缓存的实体也就是数据库里面对应的实体
+一级缓存的最大作用就是管理 Entity 的生命周期
+
+
