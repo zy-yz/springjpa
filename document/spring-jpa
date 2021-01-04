@@ -204,3 +204,17 @@ Session 关闭了，事务一定关闭。
 所谓的 N+1 的 SQL，当我们查询主体信息时候，1 条 SQL 会衍生出来关联关系的 N 条 SQL。
 # 更改批量取数据的大小为20
 spring.jpa.properties.hibernate.default_batch_fetch_size= 20
+可以利用 @BatchSize 这个注解针对不同的关联关系，配置不同的大小，从而提升 N+1 SQL 的性能。(@BatchSize 的使用具有局限性，不能作用于 @ManyToOne 和 @OneToOne 的关联关系上，那样代码是不起作用的)
+   @BatchSize(size = 20)//关联关系的属性上加@BatchSize注解，用来设置当通过UserInfo加载Address的时候一次取数据的大小
+   private List<Address> addressList;
+
+ FetchMode 的策略，包含三种模式，分别为 FetchMode.SELECT、FetchMode.JOIN，以及 FetchMode.Subselect
+FetchMode.SELECT
+FetchMode.Select 是默认策略，加与不加是同样的效果，代表获取关系的时候新开一个 SQL 进行查询。
+FetchMode.JOIN
+FetchMode.JOIN 的意思是主表信息和关联关系通过一个 SQL JOIN 的方式查出来
+FetchMode.SUBSELECT
+关联关系通过子查询的形式查询出来（通过in的查询方式查出来，变成了1+1）
+
+@EntityGraph 使用详解 具体实例看entityGraph
+

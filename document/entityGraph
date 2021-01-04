@@ -1,0 +1,98 @@
+第一步：在实体里面配置 @EntityGraph
+@Entity
+
+@Table
+
+@Data
+
+@SuperBuilder
+
+@AllArgsConstructor
+
+@NoArgsConstructor
+
+@ToString(exclude = "userInfo")
+
+//这里我们直接使用@NamedEntityGraph，因为只需要配置一个@NamedEntityGraph，我们指定一个名字getAllUserInfo，指定被这个名字的实体试图关联的关联关系属性是userInfo
+
+@NamedEntityGraph(name = "getAllUserInfo",attributeNodes = @NamedAttributeNode(value = "userInfo"))
+
+public class Address extends BaseEntity {
+
+   private String city;
+
+   @JsonBackReference //防止JSON死循环
+
+   @ManyToOne(cascade = CascadeType.PERSIST,fetch = FetchType.LAZY)//采用默认的lazy模式
+
+   private UserInfo userInfo;
+
+}
+
+@Entity
+
+@Data
+
+@SuperBuilder
+
+@AllArgsConstructor
+
+@NoArgsConstructor
+
+@Table
+
+@ToString(exclude = "addressList")
+
+//UserInfo对应的关联关系，我们利用@NamedEntityGraphs配置了两个，一个是针对Address的关联关系，一个是name叫rooms的实体图包含了rooms属性；我们在UserInfo里面增加了两个关联关系；
+
+@NamedEntityGraphs(value = {@NamedEntityGraph(name = "addressGraph",attributeNodes = @NamedAttributeNode(value = "addressList")),@NamedEntityGraph(name = "rooms",attributeNodes = @NamedAttributeNode(value = "rooms"))})
+
+public class UserInfo extends BaseEntity {
+
+   private String name;
+
+   private String telephone;
+
+   private Integer ages;
+
+   //默认LAZY模式
+
+   @OneToMany(mappedBy = "userInfo",cascade = CascadeType.PERSIST,fetch = FetchType.LAZY)
+
+   private List<Address> addressList;
+
+   //默认EAGER模式
+
+   @OneToMany(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
+
+   private List<Room> rooms;
+
+}
+第二步：在我们需要的 *Repository 的方法上面直接使用 @EntityGraph
+//因为要用findAll()做测试，所以可以覆盖JpaRepository里面的findAll()方法，加上@EntityGraph注解
+
+public interface UserInfoRepository extends JpaRepository<UserInfo, Long>{
+
+   @Override
+
+   //我们指定EntityGraph引用的是，在UserInfo实例里面配置的name=addressGraph的NamedEntityGraph；
+
+   // 这里采用的是LOAD的类型，也就是说被addressGraph配置的实体图属性address采用的fetch会变成 FetchType.EAGER模式，而没有被addressGraph实体图配置关联关系属性room还是采用默认的EAGER模式
+
+@EntityGraph(value = "addressGraph",type = EntityGraph.EntityGraphType.LOAD)
+
+   List<UserInfo> findAll();
+
+}}
+
+public interface AddressRepository extends JpaRepository<Address, Long>{
+
+@Override //可以覆盖原始方法，添加上不同的@EntityGraph策略
+
+//使用@EntityGraph查询所有Address的时候，指定name = "getAllUserInfo"的@NamedEntityGraph，采用默认的EntityGraphType.FETCH，如果Address里面有多个关联关系的时候，只有在name = "getAllUserInfo"的实体图配置的userInfo属性上采用Eager模式，其他关联关系属性没有指定，默认采用LAZY模式；
+
+@EntityGraph(value = "getAllUserInfo")
+
+List<Address> findAll();
+
+}
