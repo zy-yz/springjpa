@@ -145,3 +145,44 @@ logging.level.org.springframework.data=trace
 
 logging.level.org.springframework.orm=trace
 
+
+Persistence Context 相关的核心概念
+PersistenceContext，它是用来管理会话里面的 Entity 状态的一个上下文环境，使 Entity 的实例有了不同的状态，也就是我们所说的实体实例的生命周期
+1.PersistenceContext 是持久化上下文，是 JPA 协议定义的，而 Hibernate 的实现是通过 Session 创建和销毁的，也就是说一个 Session 有且仅有一个 PersistenceContext；
+2.PersistenceContext 既然是持久化上下文，里面管理的是 Entity 的状态；
+3.EntityManager 是通过 PersistenceContext 创建的，用来管理 PersistenceContext 中 Entity 状态的方法，离开 PersistenceContext 持久化上下文，EntityManager 没有意义；
+4.EntityManger 是操作对象的唯一入口，一个请求里面可能会有多个 EntityManger 对象
+
+spring jpa中的session
+可以狭隘的理解成EntityManager，因为其对jpa的任何操作都是通过entitymanager的接口进行的
+
+SessionImpl 的源码和 Structure 的视图，可以得出如下结论。
+
+    SessionImpl 是 EntityManager 的实现类，那么肯定实现了 JPA 协议规定的 EntityManager 的所有功能。
+    实现 PersistenceContext 对象实例化的过程，使得 PersistenceContext 生命周期就是 Session 的生命周期。
+所以我们可以抽象地理解为，Sesession 是对一些数据库的操作，需要放在同一个上下文的集合中，就是我们常说的一级缓存。
+    Session 有 open 的话，那么肯定有 close。open 的时候做了“是否开启事务”“是否获取连接”等逻辑；close 的时候做了“是否关闭事务”“释放连接”等动作；
+    Session 的任何操作都离不开事务和连接，那么肯定用当前线程保存了这些资源。
+
+Session、EntityManager、Connection 和 Transaction 的关系
+Connection 和 Transaction 的关系
+事务是建立在 Connection 之上的，没有连接就没有事务。
+以 MySQL InnoDB 为例，新开一个连接默认开启事务，默认每个 SQL 执行完之后自动提交事务。
+一个连接里面可以有多次串行的事务段；一个事务只能属于一个 Connection。
+事务与事务之间是相互隔离的，那么自然不同连接的不同事务也是隔离的。
+
+EntityManager、Connection 和 Transaction 的关系
+EntityManager 里面有 DataSource，当 EntityManager 里面开启事务的时候，先判断当前线程里面是否有数据库连接，如果有直接用。
+开启事务之前先开启连接；关闭事务，不一定关闭连接。
+开启 EntityManager，不一定立马获得连接；获得连接，不一定立马开启事务。
+关闭 EntityManager，一定关闭事务，释放连接；反之不然。
+
+Session、EntityManager、Connection 和 Transaction 的关系
+Session 是 EntityManager 的子类，SessionImpl 是 Session 和 EntityManager 的实现类。那么自然 EntityManager 和 Connection、Transaction 的关系同样适用 Session、EntityManager、Connection 和 Transaction 的关系。
+Session 的生命周期决定了 EntityManager 的生命周期。
+Session 和 Transaction 的关系
+在 Hibernate 的 JPA 实现里面，开启 Transaction 之前，必须要先开启 Session。
+默认情况下，Session 的生命周期由 open-in-view 决定是请求之前开启，还是事务之前开启。
+事务关闭了，Session 不一定关闭。
+Session 关闭了，事务一定关闭。
+
