@@ -10,7 +10,7 @@ import java.util.Date;
 
 /**
  * @author peppers
- * @description 基本实体
+ * @description 基本实体提交
  * @since 2020/12/20
  **/
 @MappedSuperclass
