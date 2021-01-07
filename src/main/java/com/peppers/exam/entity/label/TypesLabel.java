@@ -2,6 +2,7 @@ package com.peppers.exam.entity.label;
 
 
 import com.peppers.exam.enums.LabelTypeEnum;
+import lombok.Builder;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 

@@ -1,6 +1,7 @@
 package com.peppers.exam.entity.label;
 
 import com.peppers.exam.entity.baseeneity.BaseEntity;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
