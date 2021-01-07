@@ -1,8 +1,10 @@
 package com.peppers.exam;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -15,7 +17,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  * 	    includeFilters   指定包含的过滤器，该过滤器采用 ComponentScan 的过滤器，可以指定过滤器类型
  * 	    excludeFilters    指定不包含过滤器，该过滤器也是采用 ComponentScan 的过滤器里面的类
  * */
-@SpringBootApplication
+@SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 @EntityScan("com.peppers.exam.entity")
 @EnableJpaRepositories(basePackages = {"com.peppers.exam.repository.*"},repositoryImplementationPostfix = "Impl")
 public class ExamApplication {

@@ -54,7 +54,8 @@ public class MyFilterInvocationSecurityMetadataSource implements FilterInvocatio
                     values[i] = roles.get(i).getNameEn();
                 }
                 log.info("当前访问路径是{},这个url所需要的访问权限是{}", requestUrl, values);
-                return SecurityConfig.createList(values);
+                 return SecurityConfig.createList(values);
+
             }
         }
         /**
