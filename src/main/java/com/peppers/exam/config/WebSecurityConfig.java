@@ -39,11 +39,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      * @Param: [auth]
      * @return: void
      **/
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-////        auth.userDetailsService(userSecurityService)
-////                .passwordEncoder(new BCryptPasswordEncoder());// 实现自定义登录校验
-//    }
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.userDetailsService(userSecurityService)
+//                .passwordEncoder(new BCryptPasswordEncoder());// 实现自定义登录校验
+    }
 
     /**
      * @Description: 配置放行的资源
