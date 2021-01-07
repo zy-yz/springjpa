@@ -20,7 +20,7 @@ import org.springframework.web.cors.CorsUtils;
 
 /**
  * @author peppers
- * @description spring-security权限管理的核心配置
+ * @description spring-security权限管理的核心配置de
  * @since 2021/1/7
  **/
 @Configuration
