@@ -23,7 +23,7 @@ public class SysUserRole extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Date createTime,udpateTime;
+    private Date createTime,updateTime;
 
     @ManyToOne
     @JoinColumn(name = "user_role_id")

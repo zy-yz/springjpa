@@ -21,10 +21,7 @@ import java.util.Date;
 @ToString(exclude = {"sysRole","sysPermission"})
 public class SysPermissionRole extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private Date createTime,udpateTime;
+
 
     @ManyToOne
     @JoinColumn(name = "sys_role_id")

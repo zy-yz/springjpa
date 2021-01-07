@@ -1,24 +1,11 @@
-package com.peppers.exam.repositoryimpl;
+package com.peppers.exam.repository.repositoryimpl;
 
-import com.peppers.exam.entity.label.Label;
 import com.peppers.exam.entity.label.TypesLabel;
 import com.peppers.exam.repository.label.TypesLabelJpaRepository;
 import com.peppers.exam.repository.label.TypesLabelRepository;
-import com.peppers.exam.utils.page.PageData;
-import com.peppers.exam.utils.page.PageDataRequest;
-import com.peppers.exam.view.query.TypesLabelQuery;
-import com.peppers.exam.view.vo.label.TypesLabelVO;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author peppers

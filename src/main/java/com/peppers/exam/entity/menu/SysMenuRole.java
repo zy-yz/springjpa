@@ -20,10 +20,6 @@ import java.util.Date;
 @ToString(exclude = {"menu","role"})
 public class SysMenuRole extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private Date createTime,udpateTime;
 
     @ManyToOne
     @JoinColumn(name = "menu_id")

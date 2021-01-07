@@ -29,7 +29,6 @@ import java.util.Optional;
  **/
 @Service
 @Slf4j
-@Transactional(rollbackFor = Exception.class)
 public class TypesLabelService {
 
     @Resource
@@ -42,6 +41,7 @@ public class TypesLabelService {
      * @param command 创建命令
      * @return 分类信息
      */
+    @Transactional(rollbackFor = Exception.class)
     public TypesLabel create(TypesLabelDTO command){
         TypesLabel typesLabel = new TypesLabel();
         BeanUtils.copyProperties(command,typesLabel,"id");
@@ -55,6 +55,7 @@ public class TypesLabelService {
      *
      * 这里测试一下重试机制
      */
+    @Transactional(rollbackFor = Exception.class)
     @Retryable
     public TypesLabelVO edit(TypesLabelDTO command){
         Optional<TypesLabel> typesLabel = typesLabelRepository.findById(command.getId());
@@ -74,6 +75,7 @@ public class TypesLabelService {
     }
 
 
+    @Transactional(rollbackFor = Exception.class)
     public void delete(Long id) {
         Optional<TypesLabel> typesLabel = typesLabelRepository.findById(id);
         typesLabelRepository.delete(typesLabel.get());
