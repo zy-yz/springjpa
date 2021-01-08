@@ -1,15 +1,11 @@
-package com.peppers.exam.view.vo.user;
+package com.peppers.exam.view.dto.user;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
-import com.peppers.exam.entity.role.SysRole;
-import com.peppers.exam.entity.user.SysUser;
-import com.peppers.exam.view.vo.role.SysRoleVO;
+import com.peppers.exam.view.dto.role.SysRoleDTO;
 import lombok.Data;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -19,7 +15,7 @@ import java.util.Date;
  * @since 2021/1/7
  **/
 @Data
-public class SysUserRoleVO implements Serializable {
+public class SysUserRoleDTO implements Serializable {
 
     @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
@@ -30,10 +26,10 @@ public class SysUserRoleVO implements Serializable {
     /**
      *  用户表
      * */
-    private SysUserVO userRoleVO;
+    private SysUserDTO sysUserDTO;
 
     /**
      * 角色表
      * */
-    private SysRoleVO roleUserVO;
+    private SysRoleDTO roleDTO;
 }

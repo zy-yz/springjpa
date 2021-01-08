@@ -1,10 +1,10 @@
-package com.peppers.exam.view.vo.role;
+package com.peppers.exam.view.dto.role;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
-import com.peppers.exam.view.vo.permission.SysPermissionRoleVO;
-import com.peppers.exam.view.vo.menu.SysMenuRoleVO;
-import com.peppers.exam.view.vo.user.SysUserRoleVO;
+import com.peppers.exam.view.dto.menu.SysMenuRoleDTO;
+import com.peppers.exam.view.dto.permission.SysPermissionRoleDTO;
+import com.peppers.exam.view.dto.user.SysUserRoleDTO;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -16,7 +16,7 @@ import java.util.List;
  * @since 2021/1/7
  **/
 @Data
-public class SysRoleVO implements Serializable {
+public class SysRoleDTO implements Serializable {
 
     @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
@@ -49,15 +49,15 @@ public class SysRoleVO implements Serializable {
     /**
      *
      * 通过中间表*/
-    private List<SysMenuRoleVO> roleRelation;
+    private List<SysMenuRoleDTO> menuRoleDTOS;
 
     /**
      *
      * 通过中间表*/
-    private List<SysUserRoleVO> userRoleRelation;
+    private List<SysUserRoleDTO> sysUserRoleDTOS;
 
     /**
      *
      * 通过中间表*/
-    private List<SysPermissionRoleVO> sysPermissionRoles;
+    private List<SysPermissionRoleDTO> permissionRoleDTOS;
 }

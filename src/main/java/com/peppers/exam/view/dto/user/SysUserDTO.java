@@ -1,9 +1,9 @@
-package com.peppers.exam.view.vo.user;
+package com.peppers.exam.view.dto.user;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+import com.peppers.exam.entity.roleuser.SysUserRole;
 import lombok.Data;
-
 
 import java.io.Serializable;
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.List;
  * @since 2021/1/7
  **/
 @Data
-public class SysUserVO implements Serializable {
+public class SysUserDTO implements Serializable {
 
     @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
@@ -53,5 +53,5 @@ public class SysUserVO implements Serializable {
     /**
      *通过中间表 多对多
      * */
-    private List<SysUserRoleVO> userRoleRelationVO;
+    private List<SysUserRoleDTO> sysUserRoleDTOS;
 }

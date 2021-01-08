@@ -1,8 +1,8 @@
-package com.peppers.exam.view.vo.permission;
+package com.peppers.exam.view.dto.permission;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
-import lombok.*;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.List;
  * @since 2020/12/25
  **/
 @Data
-public class SysPermissionVO implements Serializable {
+public class SysPermissionDTO implements Serializable {
 
     @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
@@ -34,14 +34,14 @@ public class SysPermissionVO implements Serializable {
 
     private Boolean enabled;
 
-    private List<SysPermissionVO> children;
+    private List<SysPermissionDTO> children;
 
 
-    private SysPermissionVO parent;
+    private SysPermissionDTO parent;
 
 
     /**
      *
      * 通过中间表*/
-    private List<SysPermissionRoleVO> permissionRolesRelation;
+    private List<SysPermissionRoleDTO> permissionRoleDTOS;
 }
