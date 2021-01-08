@@ -4,6 +4,9 @@ package com.peppers.exam.view.vo.label;
 import com.peppers.exam.view.dto.label.TypesLabelDTO;
 
 
+/**
+ * @author zhaoyu
+ */
 public class TypesLabelVO extends TypesLabelDTO {
 
     @Override
