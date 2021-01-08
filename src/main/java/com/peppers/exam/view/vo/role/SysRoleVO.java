@@ -49,15 +49,15 @@ public class SysRoleVO implements Serializable {
     /**
      *
      * 通过中间表*/
-    private List<SysMenuRoleVO> roleRelation;
+    private List<SysMenuRoleVO>sysMenuRoleVOS;
 
     /**
      *
      * 通过中间表*/
-    private List<SysUserRoleVO> userRoleRelation;
+    private List<SysUserRoleVO> sysUserRoleVOS;
 
     /**
      *
      * 通过中间表*/
-    private List<SysPermissionRoleVO> sysPermissionRoles;
+    private List<SysPermissionRoleVO> sysPermissionRoleVOS;
 }
