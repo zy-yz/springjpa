@@ -1,4 +1,4 @@
-package com.peppers.exam.repository.role;
+package com.peppers.exam.repository.user;
 
 import com.peppers.exam.entity.user.SysUser;
 import org.springframework.data.jpa.repository.JpaRepository;

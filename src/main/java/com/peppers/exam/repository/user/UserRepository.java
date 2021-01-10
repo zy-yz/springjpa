@@ -1,4 +1,4 @@
-package com.peppers.exam.repository.role;
+package com.peppers.exam.repository.user;
 
 /**
  * @author peppers

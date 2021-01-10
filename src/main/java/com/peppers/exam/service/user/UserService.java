@@ -1,4 +1,4 @@
-package com.peppers.exam.service.role;
+package com.peppers.exam.service.user;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
