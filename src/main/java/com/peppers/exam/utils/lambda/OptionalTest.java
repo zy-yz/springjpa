@@ -1,6 +1,7 @@
 package com.peppers.exam.utils.lambda;
 
 
+import com.peppers.exam.entity.baseeneity.BaseEntity;
 import com.peppers.exam.entity.role.SysRole;
 import org.junit.Test;
 
@@ -156,4 +157,5 @@ public class OptionalTest {
 
         R apply(T t) throws E;
     }
+
 }
