@@ -1,5 +1,7 @@
 package com.peppers.exam.utils.design.factory;
 
+import java.util.HashMap;
+
 /**
  * @author peppers
  * @description
@@ -27,5 +29,15 @@ public class FactoryPatternDemo {
 
         //调用 Square 的 draw 方法
         shape3.draw();
+
+
+        String s = "fadf";
+        System.out.println(s.indexOf("a"));
+        System.out.println(s.indexOf("s"));
+
+
+
     }
 }
+
+
